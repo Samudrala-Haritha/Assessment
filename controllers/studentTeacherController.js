@@ -8,14 +8,23 @@ const operations = {
 	getCommonStudents: (req,res) => {
 		const studentTeacherService = service();
 		const id = req.query.teacherId;
-		let data = studentTeacherService.commonStudents(id);
-		data.then((Teachers) => {
-			return res.send(Teachers);
-		}).catch((error)=>{
-			return res.send({
-				error:true,
-				data:errorMessages[error.name] ? errorMessages[error.name] : 'INVALID_DATA'
-			});
+		return studentTeacherService.commonStudents(id)
+			.then((students) => {
+				var data = {
+					"students": []
+				}
+				students.map(function (item) {
+					data.students.push(item.student.mailId);
+				});
+				data.students = data.students.filter(function(item, pos) {
+					return data.students.indexOf(item) == pos;
+				})
+				return res.send(data);
+			}).catch((error)=>{
+				return res.send({
+					error:true,
+					data:errorMessages[error.name] ? errorMessages[error.name] : 'INVALID_DATA'
+				});
 		});
 		//return data;
 	},
