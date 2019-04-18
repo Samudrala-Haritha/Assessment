@@ -25,13 +25,6 @@ const studentSequelizeService = () => {
         }
     });
 	
-	/*Students.associate = (models) => {
-		Students.belongsToMany(models.Teachers, {
-		  through: 'TB_StudentTeacherGroup',
-		  as: 'teachers',
-		  foreignKey: 'studentId'
-		});
-	};*/
 	Students.schema(config.databases.postgres.schema);
     // Entity based code
     function getStudents() {

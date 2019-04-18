@@ -57,7 +57,7 @@ const operations = {
 	},
 	delete: (req, res) => {
 		const teacherService = service();
-		const id = req.params.TeacherId;
+		const id = req.params.teacherId;
 		let record = null;
 		return teacherService.deleteTeacher(id)
 		  .then((data) => {

@@ -6,10 +6,10 @@ const logger = require("../utils/logger");
 const config = require("../utils/config");
 
 const teacherSequelizeService = () => {
-  logger.info(EVTC, 'Initialized Teacher Service');
-  const sequelize = SequelizeUtil(config, logger).getConnection();
+	logger.info(EVTC, 'Initialized Teacher Service');
+	const sequelize = SequelizeUtil(config, logger).getConnection();
   
-  const Teachers = sequelize.define('TB_Teacher', {
+	const Teachers = sequelize.define('TB_Teacher', {
         teacherId: {
             type: Sequelize.BIGINT,
             field: 'teacherId',
@@ -26,15 +26,7 @@ const teacherSequelizeService = () => {
         }
     });
 	
-	/*Teachers.associate = (models) => {
-		Teachers.belongsToMany(models.Students, {
-		  through: 'TB_StudentTeacherGroup',
-		  as: 'students',
-		  foreignKey: 'teacherId'
-		});
-	};*/
-	
-  Teachers.schema(config.databases.postgres.schema);
+    Teachers.schema(config.databases.postgres.schema);
   
     // Entity based code
     function getTeachers() {

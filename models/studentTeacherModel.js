@@ -6,9 +6,42 @@ const logger = require("../utils/logger");
 const config = require("../utils/config");
 
 const students_TeachersSequelizeService = () => {
-  logger.info(EVTC, 'Initialized Students_Teachers Service');
-  const sequelize = SequelizeUtil(config, logger).getConnection();
-
+	logger.info(EVTC, 'Initialized Students_Teachers Service');
+	const sequelize = SequelizeUtil(config, logger).getConnection();
+	
+	const Students = sequelize.define('TB_Student', {
+        studentId: {
+            type: Sequelize.BIGINT,
+            field: 'studentId',
+            primaryKey: true,
+        },
+		name: {
+            type: Sequelize.STRING,
+            field: 'name',
+        },
+        mailId: {
+            type: Sequelize.STRING,
+            field: 'mailId',
+        }
+    });
+	
+	const Teachers = sequelize.define('TB_Teacher', {
+        teacherId: {
+            type: Sequelize.BIGINT,
+            field: 'teacherId',
+            autoIncrement: true,
+            primaryKey: true,
+        },
+		name: {
+            type: Sequelize.STRING,
+            field: 'name',
+        },
+        mailId: {
+            type: Sequelize.STRING,
+            field: 'mailId',
+        }
+    });
+	
   const StudentTeacherGroup = sequelize.define('TB_StudentTeacherGroup', {
         id: {
 		  type: Sequelize.BIGINT,
@@ -34,16 +67,33 @@ const students_TeachersSequelizeService = () => {
 			}
         }
     });
+	// many-to-many association
+	StudentTeacherGroup.belongsTo(Teachers, { as: 'teacher', foreignKey: 'studentId' });
+	StudentTeacherGroup.belongsTo(Students, { as: 'student', foreignKey: 'studentId' });
+	
     // Entity based code
-    function commonStudents(id) {
-		if(id){
+    function commonStudents(teacherId) {
+		if(teacherId){
 			return StudentTeacherGroup.findAll({
-				where: {
-					teacherId: id,
-				},
+				include: [{
+					model: Students,
+					attributes: ['mailId'],
+					as: 'student'
+				}],
+				attributes:[],
+				where:{
+					teacherId
+				}
 			});
 		}else{
-			return StudentTeacherGroup.findAll();
+			return StudentTeacherGroup.findAll({
+				include: [{
+					model: Students,
+					attributes: ['mailId'],
+					as: 'student'
+				}],
+				attributes:[]
+			});
 		}
     }
 
