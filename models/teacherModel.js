@@ -28,11 +28,12 @@ const teacherSequelizeService = () => {
 	
     Teachers.schema(config.databases.postgres.schema);
   
-    // Entity based code
+    // Retrieves all teachers list from student(TB_Teacher) table
     function getTeachers() {
        return Teachers.findAll();
     }
 
+    // Retrieves teacher details from teacher(TB_Teacher) table, based on id 
     function getTeacher(id) {
         logger.info(EVTC+ `Searching for a teacher based on id:${id}`);
         return Teachers.findAll({
@@ -41,7 +42,8 @@ const teacherSequelizeService = () => {
             },
         });
     }
-
+    
+    // Inserts teacher details in teacher(TB_Teacher) table
     function createTeacher(req) {
         logger.info(EVTC, 'req.body.id  %s', req.body.teacherId);
         return Teachers.create({
@@ -51,7 +53,8 @@ const teacherSequelizeService = () => {
         },
         );
     }
-
+	
+    // Updates teacher details in teacher(TB_Teacher) table, based on id
     function updateTeacher(req) {
         return Teachers.update({
             name: req.body.name,
@@ -63,6 +66,7 @@ const teacherSequelizeService = () => {
         });
     }
 
+    // Deletes  teacher from  teacher(TB_Teacher) table, based on id
     function deleteTeacher(teacherId) {
         return Teachers.destroy({
             where: {
