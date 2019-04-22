@@ -4,6 +4,7 @@ const logger = require("../utils/logger");
 const errorMessages = require("../utils/errorMessages");
 
 const operations = {
+	// get all teachers
 	getTeachers: (req,res) => {
 		const teacherService = service();
 		let data = teacherService.getTeachers();
@@ -17,6 +18,7 @@ const operations = {
 		});
 		//return data;
 	},
+	// Insert teacher details
 	post: (req, res) => {
 		//const id = req.params.id;
 		const teacherService = service();
@@ -36,6 +38,7 @@ const operations = {
 			});
 		});
 	},
+	//update teacher detals, based on student id 
 	put: (req, res) => {
 		//const id = req.params.id;
 		const teacherService = service();
@@ -55,6 +58,7 @@ const operations = {
 			});
 		});
 	},
+	//delete teacher, based on request id
 	delete: (req, res) => {
 		const teacherService = service();
 		const id = req.params.teacherId;
