@@ -26,11 +26,12 @@ const studentSequelizeService = () => {
     });
 	
 	Students.schema(config.databases.postgres.schema);
-    // Entity based code
+    // Retrieves all students list from student(TB_Student) table
     function getStudents() {
        return Students.findAll();
     }
-
+	
+    // Retrieves student details from student(TB_Student) table based on id 
     function getStudent(id) {
         logger.info(EVTC+ `Searching for a student based on id:${id}`);
         return Students.findAll({
@@ -40,6 +41,7 @@ const studentSequelizeService = () => {
         });
     }
 
+    // Inserts student details in student(TB_Student) table
     function createStudent(req) {
         logger.info(EVTC, 'req.body.id  %s', req.body.StudentId);
         return Students.create({
@@ -50,6 +52,7 @@ const studentSequelizeService = () => {
         );
     }
 
+    // Updates student details in student(TB_Student) table based on id
     function updateStudent(req) {
         return Students.update({
             name: req.body.name,
@@ -61,6 +64,7 @@ const studentSequelizeService = () => {
         });
     }
 
+    // Deletes student from student(TB_Student) table based on id
     function deleteStudent(studentId) {
         return Students.destroy({
             where: {
