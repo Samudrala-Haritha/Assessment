@@ -4,6 +4,7 @@ const logger = require("../utils/logger");
 const errorMessages = require("../utils/errorMessages");
 
 const operations = {
+	// get all studenets
 	getStudents: (req,res) => {
 		const studentService = service();
 		let data = studentService.getStudents();
@@ -17,6 +18,7 @@ const operations = {
 		});
 		//return data;
 	},
+	// Insert studenet details
 	post: (req, res) => {
 		//const id = req.params.id;
 		const studentService = service();
@@ -36,6 +38,7 @@ const operations = {
 			});
 		});
 	},
+	//update student detals, based on student id 
 	put: (req, res) => {
 		//const id = req.params.id;
 		const studentService = service();
@@ -55,6 +58,7 @@ const operations = {
 			});
 		});
 	},
+	//delete student, based on request id
 	delete: (req, res) => {
 		const studentService = service();
 		const id = req.params.studentId;
