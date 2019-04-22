@@ -18,3 +18,33 @@ Setup
 	Realationship table (TB_StudentTeacherGroup)
 	Note: Models have the related tables and columns
 5. 'apiRoutes.js' have the service urls. Test them using postman, you will get the corresponding response or related error message.
+
+Service 
+1 To get common students 
+          req: http://localhost:9000/api/getStudents
+	  res-success: [{"maildId": "test@gmail.com"},
+	  {"maildId": "hari@gmail.com"}]
+	  res-error: {"error": true, "data": "Related Error Message"}
+1.2 To get common students where teaher id is given
+	  req: http://localhost:9000/api/getStudents?teacherId=1
+	  res-success: [{"maildId": "test@gmail.com"}]
+	  res-error: {"error": true, "data": "Related Error Message"}
+	  
+2. To register new student 
+          req: http://localhost:9000/api/register
+	  req-body: {"id": 3, "studentId": "hari " "teacherId": "Ranjit@gmail.com"}
+	  res-success:{1}
+	  res-error: {"error": true, "data": "Related Error Message"}
+	  
+3. Update student teacher mapping relation 
+	  req: http://localhost:9000/api/retrievefornotifications
+	  req-body: {"id": 4, "studentId": "hari " "teacherId": "teacher1@gmail.com"}
+	  res-success:{1}
+	  res-error: {"error": true, "data": "Related Error Message"}
+	  
+4. To suspend student from  teacher
+          req: http://localhost:9000/api/suspend?studentId:1&teacherId=2
+	  res-success: {1}
+	  res-error: {"error": true, "data": "Related Error Message"}
+	  
+	
