@@ -28,7 +28,7 @@ const teacherSequelizeService = () => {
 	
     Teachers.schema(config.databases.postgres.schema);
   
-    // Retrieves all teachers list from student(TB_Teacher) table
+    // Retrieves all teachers list from teacher(TB_Teacher) table
     function getTeachers() {
        return Teachers.findAll();
     }
