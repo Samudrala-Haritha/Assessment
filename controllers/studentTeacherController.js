@@ -5,6 +5,7 @@ const CircularJSON = require('circular-json');
 const errorMessages = require("../utils/errorMessages");
 
 const operations = {
+	//get common students , based on teaher id
 	getCommonStudents: (req,res) => {
 		const studentTeacherService = service();
 		const id = req.query.teacherId;
@@ -28,6 +29,7 @@ const operations = {
 		});
 		//return data;
 	},
+	//register student to a teacher, based on teaher id and student id
 	post: (req, res) => {
 		//const id = req.params.id;
 		const studentTeacherService = service();
@@ -47,6 +49,7 @@ const operations = {
 			});
 		});
 	},
+	//updates  teaher details, based on student id
 	put: (req, res) => {
 		//const id = req.params.id;
 		const studentTeacherService = service();
@@ -66,6 +69,7 @@ const operations = {
 			});
 		});
 	},
+	//delete particular student, based on teaher id and student id
 	delete: (req, res) => {
 		const studentTeacherService = service();
 		const studentId = req.query.studentId;
