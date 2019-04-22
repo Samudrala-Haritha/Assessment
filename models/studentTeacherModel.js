@@ -97,7 +97,7 @@ const students_TeachersSequelizeService = () => {
 		}
     }
 	
-    // Register student to teacher in relation(TB_Student) table 
+    // Register student to teacher in relation(TB_StudentTeacherGroup) table 
     function createStudentTeacherGroup(req) {
         return StudentTeacherGroup.create({
 			id: req.body.id,
@@ -107,7 +107,7 @@ const students_TeachersSequelizeService = () => {
         );
     }
 
-    // Update student or teacher details in relation(TB_Student) table, based on student id
+    // Update student or teacher details in relation(TB_StudentTeacherGroup) table, based on student id
     function updateStudentTeacherGroup(req) {
         return StudentTeacherGroup.update({
 			id: req.body.id,
@@ -120,7 +120,7 @@ const students_TeachersSequelizeService = () => {
         });
     }
 
-    // Suspend a particular student in relation(TB_Student) table, to a particulat teacher, based on ids
+    // Suspend a particular student in relation(TB_StudentTeacherGroup) table, to a particulat teacher, based on ids
     function deleteStudentOrTeacherGroup(studentId,teacherId) {
         return StudentTeacherGroup.destroy({
             where: {
