@@ -71,7 +71,7 @@ const students_TeachersSequelizeService = () => {
 	StudentTeacherGroup.belongsTo(Teachers, { as: 'teacher', foreignKey: 'studentId' });
 	StudentTeacherGroup.belongsTo(Students, { as: 'student', foreignKey: 'studentId' });
 	
-    // Entity based code
+    // Retrieves common students list from relation(TB_StudentTeacherGroup) table, with or without teacher id
     function commonStudents(teacherId) {
 		if(teacherId){
 			return StudentTeacherGroup.findAll({
@@ -96,7 +96,8 @@ const students_TeachersSequelizeService = () => {
 			});
 		}
     }
-
+	
+    // Register student to teacher in relation(TB_Student) table 
     function createStudentTeacherGroup(req) {
         return StudentTeacherGroup.create({
 			id: req.body.id,
@@ -106,6 +107,7 @@ const students_TeachersSequelizeService = () => {
         );
     }
 
+    // Update student or teacher details in relation(TB_Student) table, based on student id
     function updateStudentTeacherGroup(req) {
         return StudentTeacherGroup.update({
 			id: req.body.id,
@@ -118,11 +120,12 @@ const students_TeachersSequelizeService = () => {
         });
     }
 
+    // Suspend a particular student in relation(TB_Student) table, to a particulat teacher, based on ids
     function deleteStudentOrTeacherGroup(studentId,teacherId) {
         return StudentTeacherGroup.destroy({
             where: {
                 studentId,
-				teacherId
+		teacherId
             },
         });
     }
