@@ -19,6 +19,9 @@ Setup
 	Note: Models have the related tables and columns
 5. 'apiRoutes.js' have the service urls. Test them using postman, you will get the corresponding response or related error message.
 
+Testing: 
+Run the 'npm test' in command prompt to test the services
+
 Service 
 1 To get common students 
           req: http://localhost:9000/api/getStudents
