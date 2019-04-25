@@ -1,12 +1,12 @@
 const studentRoute = '/getStudents';
 const createStudentRoute = '/registerNewStudent';
 const updateStudentRoute = '/updateStudent';
-const deleteStudentRoute = '/deRegisterStudent/:studentId';
+const deleteStudentRoute = '/deRegisterStudent:studentId';
 
 const teacherRoute = '/getTeachers';
 const createTeacherRoute = '/registerNewTeacher';
 const updateTeacherRoute = '/updateTeacher';
-const deleteTeacherRoute = '/deRegisterTeacher/:teacherId';
+const deleteTeacherRoute = '/deRegisterTeacher:teacherId';
 
 const commonStudents = '/commonStudents';
 const register = '/register';

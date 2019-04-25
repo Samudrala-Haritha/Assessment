@@ -125,7 +125,7 @@ const students_TeachersSequelizeService = () => {
         return StudentTeacherGroup.destroy({
             where: {
                 studentId,
-		teacherId
+                teacherId
             },
         });
     }

@@ -6,7 +6,7 @@ let CommonStudents = require('../../models/studentTeacherModel');
 
 //Require the dev-dependencies
 let chai = require('chai');
-var expect = chai.expect;
+let expect = chai.expect;
 let chaiHttp = require('chai-http');
 let server = require('../../app');
 let should = chai.should();
@@ -101,7 +101,7 @@ describe('CommonStudents Serivce', () => {
             });
       });
   });
-  describe('/Suspend student with teacher id', () => {
+  describe('/update student and teacher', () => {
       it('it should update the student or teacher with student and teacher id', (done) => {
            let register = {
 			  id:2,
@@ -114,7 +114,6 @@ describe('CommonStudents Serivce', () => {
 			.set('Content-Type', 'application/json')
 			.set('Accept', 'application/json')
             .end((err, res) => {
-				console.log("TTTTTTTTTTTTTTT"+JSON.stringify(res)+JSON.stringify(err))
                 if(res.body.hasOwnProperty('error')){
 					res.body.should.have.property('error');
                     res.body.should.have.property('data').eql('INVALID_DATA');
